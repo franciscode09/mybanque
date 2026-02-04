@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="bg">
+
+<header>🏦 Espace Client</header>
+
+<div class="container wide">
+<div class="card">
+
+<h2 id="clientName"></h2>
+<p><b>IBAN :</b> <span id="iban"></span></p>
+
+<div class="balances">
+  <div class="balance available">
+    Solde disponible
+    <span id="available"></span> €
+  </div>
+
+  <div class="balance blocked">
+    Solde bloqué
+    <span id="blocked"></span> €
+    <p class="warning">
+      Fonds bloqués.<br>
+      Dépôt minimum 500 € requis.
+    </p>
+    <button onclick="unlockFunds()">Débloquer</button>
+  </div>
+</div>
+
+<h3>💳 Carte bancaire virtuelle</h3>
+<div class="card-visa">
+  <p class="number" id="cardNumber"></p>
+  <p>EXP <span id="cardExp"></span> | CVV <span id="cardCvv"></span></p>
+  <p>Solde carte : <b><span id="cardBalance"></span> €</b></p>
+</div>
+<button onclick="rechargeCard()">Recharger la carte</button>
+
+<div class="actions">
+  <button onclick="deposit()">Dépôt</button>
+  <button onclick="withdraw()">Retrait</button>
+  <button onclick="goTransfer()">Virement</button>
+  <button class="danger" onclick="logout()">Déconnexion</button>
+</div>
+
+<h3>📜 Historique</h3>
+<ul id="history"></ul>
+
+</div>
+</div>
+
+<div class="clock" id="clock"></div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>OTP</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="bg">
+
+<header>🔐 Sécurité</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Code OTP</h2>
+    <p>Code envoyé (simulation)</p>
+    <p><b>Code développeur : 999999</b></p>
+    <input id="otp" placeholder="OTP">
+    <button onclick="verifyOTP()">Valider</button>
+    <p id="otpMsg" class="error"></p>
+  </div>
+</div>
+
+<div class="clock" id="clock"></div>
+<script src="app.js"></script>
+</body>
+</html>
