@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    font-family: "Segoe UI", sans-serif;
+    background:
+      linear-gradient(rgba(0,0,0,.45), rgba(0,0,0,.45)),
+      url("https://images.unsplash.com/photo-1554224155-6726b3ff858f");
+    background-size: cover;
+  }
+  
+  .center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  header {
+    background: #0a1f44;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  
+  .logo {
+    font-weight: bold;
+    font-size: 18px;
+  }
+  
+  .card, .login-box {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    margin: 20px;
+    max-width: 400px;
+  }
+  
+  .balance {
+    background: linear-gradient(135deg, #0a1f44, #1e3c72);
+    color: white;
+  }
+  
+  input, button, a {
+    width: 100%;
+    margin-top: 10px;
+    padding: 10px;
+  }
+  
+  button {
+    background: #0a1f44;
+    color: white;
+    border: none;
+  }
+  
+  .danger {
+    background: #b00020;
+  }
+  
+  a {
+    text-decoration: none;
+    text-align: center;
+    color: #0a1f44;
+  }
+  
+  .active { color: #00e676; font-weight: bold; }
+  .blocked { color: #ff1744; font-weight: bold; }
+  
+  @media (max-width: 600px) {
+    header { flex-direction: column; }
+  }
+  
