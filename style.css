@@ -1,0 +1,80 @@
+body.bg{
+    background:url("https://images.unsplash.com/photo-1556742049-908e5f2c9e44") center/cover fixed;
+    font-family:Segoe UI,sans-serif;
+  }
+  
+  header{
+    background:#0a3d62;
+    color:white;
+    padding:15px;
+  }
+  
+  .container{max-width:420px;margin:60px auto;}
+  .container.wide{max-width:900px;}
+  
+  .card{
+    background:white;
+    padding:25px;
+    border-radius:12px;
+  }
+  
+  input,button{
+    width:100%;
+    padding:12px;
+    margin:8px 0;
+  }
+  
+  button{
+    background:#0a3d62;
+    color:white;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+  }
+  
+  button:disabled{
+    background:gray;
+    cursor:not-allowed;
+  }
+  
+  button.danger{background:#c0392b;}
+  
+  .balances{display:flex;gap:20px;}
+  .balance{flex:1;padding:15px;border-radius:10px;}
+  .available{background:#ecf9f1;}
+  .blocked{background:#fdecea;border:2px solid red;}
+  
+  .alert{
+    background:#fdecea;
+    border:2px solid red;
+    padding:12px;
+    margin-bottom:15px;
+    color:#c0392b;
+  }
+  
+  .card-visa{
+    background:linear-gradient(135deg,#2c3e50,#000);
+    color:white;
+    padding:20px;
+    border-radius:15px;
+  }
+  
+  .card-visa .number{
+    font-size:20px;
+    letter-spacing:2px;
+  }
+  
+  .eye{cursor:pointer;margin-left:10px;}
+  
+  ul{list-style:none;padding:0;}
+  ul li{border-bottom:1px solid #ddd;padding:6px;}
+  
+  .clock{
+    position:fixed;
+    bottom:10px;
+    right:10px;
+    background:white;
+    padding:6px;
+    border-radius:6px;
+  }
+  

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Virement bancaire</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="bg">
+
+<header>🔁 Virement bancaire</header>
+
+<div class="container">
+<div class="card">
+  <input id="beneficiary" placeholder="Nom du bénéficiaire">
+  <input id="ibanReceiver" placeholder="IBAN du bénéficiaire">
+  <input id="amount" type="number" placeholder="Montant €">
+  <input id="reason" placeholder="Motif du virement">
+  <button onclick="makeTransfer()">Confirmer le virement</button>
+  <p id="transferMsg"></p>
+</div>
+</div>
+
+<div class="clock" id="clock"></div>
+<script src="app.js"></script>
+</body>
+</html>

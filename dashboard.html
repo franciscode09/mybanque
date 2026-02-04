@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Espace Client</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="bg">
+
+<header>🏦 Espace Client</header>
+
+<div class="container wide">
+<div class="card">
+
+<h2 id="clientName"></h2>
+<p><b>IBAN :</b> <span id="iban"></span></p>
+
+<div class="alert">
+🔴 <b>Compte bloqué</b><br>
+Votre compte est soumis à un plafond réglementaire.<br>
+Les opérations Dépôt, Retrait et Recharge carte sont suspendues.<br>
+Veuillez vous rendre en agence avec vos documents et indemnités.
+</div>
+
+<div class="balances">
+  <div class="balance available">
+    Solde disponible<br>
+    <b><span id="available"></span> €</b>
+  </div>
+  <div class="balance blocked">
+    Solde bloqué<br>
+    <b><span id="blocked"></span> €</b>
+  </div>
+</div>
+
+<h3>💳 Carte bancaire virtuelle</h3>
+<div class="card-visa">
+  <p class="number">
+    <span id="cardNumber"></span>
+    <span class="eye" onclick="toggleCard()">👁️</span>
+  </p>
+  <p>EXP <span id="cardExp"></span> | CVV <span id="cardCvv"></span></p>
+  <p>Solde carte : <b><span id="cardBalance"></span> €</b></p>
+</div>
+
+<button disabled onclick="blockedAction()">Recharger la carte</button>
+
+<div class="actions">
+  <button disabled onclick="blockedAction()">Dépôt</button>
+  <button disabled onclick="blockedAction()">Retrait</button>
+  <button onclick="goTransfer()">Virement</button>
+  <button onclick="downloadRIB()">Télécharger RIB</button>
+  <button onclick="adminUnlock()">Déblocage admin (démo)</button>
+  <button class="danger" onclick="logout()">Déconnexion</button>
+</div>
+
+<h3>📜 Historique des transactions</h3>
+<ul id="history"></ul>
+
+</div>
+</div>
+
+<div class="clock" id="clock"></div>
+<script src="app.js"></script>
+</body>
+</html>

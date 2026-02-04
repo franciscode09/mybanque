@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<title>Validation OTP</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body class="bg">
+
+<header>🔐 Sécurité renforcée</header>
+
+<div class="container">
+  <div class="card">
+    <h2>Code de validation</h2>
+    <p>Code développeur : <b>999999</b></p>
+    <input id="otpInput" placeholder="Code OTP">
+    <button onclick="validateOTP()">Valider</button>
+    <p id="otpError" class="error"></p>
+  </div>
+</div>
+
+<div class="clock" id="clock"></div>
+<script src="app.js"></script>
+</body>
+</html>
