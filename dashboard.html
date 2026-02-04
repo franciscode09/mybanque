@@ -2,23 +2,22 @@
 <html lang="fr">
 <head>
 <meta charset="UTF-8">
-<title>NeoBank | Tableau de bord</title>
+<title>NeoBank | Dashboard</title>
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
 <header>
   <div class="logo">🏦 NeoBank</div>
-  <div class="top-info">
-    <span id="datetime"></span>
-    <span id="status" class="active">ACTIF</span>
+  <div>
+    <span class="active">ACTIF</span>
     <button onclick="logout()">Déconnexion</button>
   </div>
 </header>
 
 <section class="card balance">
   <h3>Solde disponible</h3>
-  <h1><span id="balance"></span> €</h1>
+  <h1><span id="balance">0</span> €</h1>
   <p>💼 Solde bloqué : <strong class="blocked">85 000 €</strong></p>
   <p>IBAN : FR76 3000 4000 1200 0000 789</p>
 </section>
@@ -26,20 +25,17 @@
 <section class="card">
   <h3>Actions bancaires</h3>
   <input type="number" id="amount" placeholder="Montant €">
+
   <button onclick="deposit()">Dépôt</button>
   <button onclick="withdraw()">Retrait</button>
-  <button onclick="pay()">Paiement CB</button>
-  <a href="transfer.html">Virement bancaire</a>
-  <button onclick="downloadPDF()">Télécharger relevé PDF</button>
-  <button class="danger" onclick="triggerBlock()">Opération sensible</button>
+  <a href="transfert.html">Virement bancaire</a>
 </section>
 
 <section class="card">
-  <h3>Historique des opérations</h3>
+  <h3>Historique</h3>
   <ul id="transactions"></ul>
 </section>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 <script src="app.js"></script>
 </body>
 </html>
