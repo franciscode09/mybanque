@@ -20,12 +20,10 @@ body {
     padding: 15px;
     display: flex;
     justify-content: space-between;
-    flex-wrap: wrap;
   }
   
   .logo {
     font-weight: bold;
-    font-size: 18px;
   }
   
   .card, .login-box {
@@ -51,22 +49,19 @@ body {
     background: #0a1f44;
     color: white;
     border: none;
-  }
-  
-  .danger {
-    background: #b00020;
+    cursor: pointer;
   }
   
   a {
     text-decoration: none;
-    text-align: center;
     color: #0a1f44;
+    text-align: center;
   }
   
   .active { color: #00e676; font-weight: bold; }
   .blocked { color: #ff1744; font-weight: bold; }
   
-  @media (max-width: 600px) {
-    header { flex-direction: column; }
+  ul {
+    padding-left: 20px;
   }
   
