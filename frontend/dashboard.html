@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <title>NeoBank | Dashboard</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body onload="loadDashboard()">
+
+<header>
+  <div class="logo">🏦 NeoBank</div>
+  <button onclick="logout()">Déconnexion</button>
+</header>
+
+<section class="card balance">
+  <h3>Solde disponible</h3>
+  <h1><span id="balance">0</span> €</h1>
+</section>
+
+<section class="card">
+  <h3>Actions bancaires</h3>
+  <a href="transfert.html">Virement bancaire</a>
+</section>
+
+<section class="card">
+  <h3>Historique des transactions</h3>
+  <ul id="transactions"></ul>
+</section>
+
+<script src="app.js"></script>
+</body>
+</html>

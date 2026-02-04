@@ -1,0 +1,12 @@
+{
+    "name": "neobank-backend",
+    "version": "1.0.0",
+    "type": "module",
+    "dependencies": {
+      "express": "^4.18.2",
+      "cors": "^2.8.5",
+      "nodemailer": "^6.9.7",
+      "uuid": "^9.0.1"
+    }
+  }
+  
