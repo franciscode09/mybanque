@@ -1,32 +1,41 @@
-const path = location.pathname;
+/* =========================
+   ROUTING / SÉCURITÉ
+========================= */
+const page = location.pathname;
 
-// 🔒 Sécurité des pages
-if (path.includes("dashboard") || path.includes("transfert")) {
-  if (!localStorage.getItem("connected") || !localStorage.getItem("otpVerified")) {
+const isConnected = localStorage.getItem("connected") === "true";
+const otpOK = localStorage.getItem("otpVerified") === "true";
+
+if (page.includes("dashboard") || page.includes("transfert")) {
+  if (!isConnected || !otpOK) {
     location.href = "index.html";
   }
 }
 
-if (path.includes("otp")) {
-  if (!localStorage.getItem("connected")) {
-    location.href = "index.html";
-  }
+if (page.includes("otp") && !isConnected) {
+  location.href = "index.html";
 }
 
-// 💰 Initialisation
+/* =========================
+   INITIALISATION
+========================= */
 if (!localStorage.getItem("balance")) {
   localStorage.setItem("balance", "1000");
 }
+
 if (!localStorage.getItem("transactions")) {
   localStorage.setItem("transactions", JSON.stringify([]));
 }
 
-// 🔐 Connexion
+/* =========================
+   CONNEXION
+========================= */
 function login() {
-  const user = user.value;
-  const pass = pass.value;
+  const userInput = document.getElementById("user").value;
+  const passInput = document.getElementById("pass").value;
+  const error = document.getElementById("error");
 
-  if (user === "admin" && pass === "1234") {
+  if (userInput === "admin" && passInput === "1234") {
     localStorage.setItem("connected", "true");
     localStorage.removeItem("otpVerified");
 
@@ -40,85 +49,105 @@ function login() {
   }
 }
 
-// 🔑 OTP
+/* =========================
+   OTP
+========================= */
 function verifyOTP() {
-  if (otp.value === localStorage.getItem("otpCode")) {
+  const input = document.getElementById("otp").value;
+  const error = document.getElementById("error");
+
+  if (input === localStorage.getItem("otpCode")) {
     localStorage.setItem("otpVerified", "true");
     localStorage.removeItem("otpCode");
     location.href = "dashboard.html";
   } else {
-    error.innerText = "Code incorrect";
+    error.innerText = "Code OTP incorrect";
   }
 }
 
-// 🚪 Déconnexion
+/* =========================
+   DÉCONNEXION
+========================= */
 function logout() {
   localStorage.clear();
   location.href = "index.html";
 }
 
-// 💳 Solde & historique
+/* =========================
+   UI
+========================= */
 function updateUI() {
-  if (document.getElementById("balance")) {
-    balance.innerText = localStorage.getItem("balance");
+  const balanceEl = document.getElementById("balance");
+  const historyEl = document.getElementById("transactions");
+
+  if (balanceEl) {
+    balanceEl.innerText = localStorage.getItem("balance");
   }
 
-  if (document.getElementById("transactions")) {
+  if (historyEl) {
+    historyEl.innerHTML = "";
     const list = JSON.parse(localStorage.getItem("transactions"));
-    transactions.innerHTML = "";
-    list.forEach(t => {
+    list.forEach(item => {
       const li = document.createElement("li");
-      li.innerText = t;
-      transactions.appendChild(li);
+      li.innerText = item;
+      historyEl.appendChild(li);
     });
   }
 }
+
 updateUI();
 
-// ➕ Dépôt
-function deposit() {
-  const amt = Number(amount.value);
-  let bal = Number(localStorage.getItem("balance"));
-  bal += amt;
-
-  localStorage.setItem("balance", bal);
-  save("Dépôt de " + amt + " €");
-  updateUI();
-}
-
-// ➖ Retrait
-function withdraw() {
-  const amt = Number(amount.value);
-  let bal = Number(localStorage.getItem("balance"));
-
-  if (amt <= bal) {
-    bal -= amt;
-    localStorage.setItem("balance", bal);
-    save("Retrait de " + amt + " €");
-    updateUI();
-  } else {
-    alert("Solde insuffisant");
-  }
-}
-
-// 🔁 Virement
-function transfer() {
-  const amt = Number(transferAmount.value);
-  let bal = Number(localStorage.getItem("balance"));
-
-  if (amt <= bal) {
-    bal -= amt;
-    localStorage.setItem("balance", bal);
-    save("Virement de " + amt + " €");
-    location.href = "dashboard.html";
-  } else {
-    alert("Solde insuffisant");
-  }
-}
-
-// 📝 Historique
-function save(text) {
+/* =========================
+   HISTORIQUE
+========================= */
+function addTransaction(text) {
   const list = JSON.parse(localStorage.getItem("transactions"));
   list.unshift(text);
   localStorage.setItem("transactions", JSON.stringify(list));
+}
+
+/* =========================
+   OPÉRATIONS
+========================= */
+function deposit() {
+  const amount = Number(document.getElementById("amount").value);
+  if (amount <= 0) return alert("Montant invalide");
+
+  let bal = Number(localStorage.getItem("balance"));
+  bal += amount;
+
+  localStorage.setItem("balance", bal);
+  addTransaction("➕ Dépôt de " + amount + " €");
+  updateUI();
+}
+
+function withdraw() {
+  const amount = Number(document.getElementById("amount").value);
+  let bal = Number(localStorage.getItem("balance"));
+
+  if (amount <= 0) return alert("Montant invalide");
+  if (amount > bal) return alert("Solde insuffisant");
+
+  bal -= amount;
+  localStorage.setItem("balance", bal);
+  addTransaction("➖ Retrait de " + amount + " €");
+  updateUI();
+}
+
+function transfer() {
+  const amount = Number(document.getElementById("transferAmount").value);
+  const benef = document.getElementById("benef").value;
+  let bal = Number(localStorage.getItem("balance"));
+
+  if (!benef) return alert("Bénéficiaire requis");
+  if (amount <= 0) return alert("Montant invalide");
+  if (amount > bal) return alert("Solde insuffisant");
+
+  bal -= amount;
+  localStorage.setItem("balance", bal);
+
+  addTransaction("🔁 Virement de " + amount + " € vers " + benef);
+
+  alert("Virement effectué avec succès ✅");
+  location.href = "dashboard.html";
 }
